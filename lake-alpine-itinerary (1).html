@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lake Alpine — Silver Tip Campground · Jul 24–26, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F4EFE3;
+    --ink:#20281F;
+    --pine:#2F4A35;
+    --pine-deep:#1B2C20;
+    --rust:#B5512E;
+    --granite:#6B6F66;
+    --amber:#D9A441;
+    --line:#C9BFA4;
+    --card:#FBF8EF;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Source Serif 4", serif;
+    line-height:1.5;
+  }
+  .mono{font-family:"IBM Plex Mono", monospace;}
+  h1,h2,h3,.disp{
+    font-family:"Oswald", sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.03em;
+    color:var(--pine-deep);
+    margin:0;
+  }
+  .icon{
+    width:1em; height:1em;
+    display:inline-block;
+    vertical-align:-0.15em;
+    fill:none;
+    stroke:currentColor;
+    stroke-width:1.6;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    overflow:hidden;
+    background:var(--pine-deep);
+    color:var(--bg);
+    padding:5rem 1.5rem 4.5rem;
+    text-align:center;
+  }
+  .hero svg.topo{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    opacity:0.18;
+  }
+  .hero-inner{position:relative; z-index:2; max-width:760px; margin:0 auto;}
+  .eyebrow{
+    font-family:"IBM Plex Mono", monospace;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    font-size:0.72rem;
+    color:var(--amber);
+    margin-bottom:1rem;
+  }
+  .hero h1{
+    font-size:clamp(2.2rem, 6vw, 4rem);
+    color:#FBF8EF;
+    line-height:1.05;
+    font-weight:700;
+  }
+  .hero .sub{
+    margin-top:0.9rem;
+    font-family:"Source Serif 4", serif;
+    font-style:italic;
+    font-size:1.15rem;
+    color:#D8D0BB;
+  }
+  .hero-meta{
+    margin-top:2.2rem;
+    display:flex;
+    justify-content:center;
+    gap:2.2rem;
+    flex-wrap:wrap;
+    font-family:"IBM Plex Mono", monospace;
+    font-size:0.85rem;
+    color:#C9BFA4;
+  }
+  .hero-meta b{color:var(--amber); display:block; font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.25rem; font-weight:500;}
+
+  /* ---------- RESERVATION BANNER ---------- */
+  .resv{
+    max-width:880px;
+    margin:2.5rem auto 0;
+    padding:0 1.5rem;
+  }
+  .resv-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-left:4px solid var(--pine);
+    border-radius:6px;
+    padding:1.1rem 1.4rem;
+    display:flex;
+    flex-wrap:wrap;
+    gap:1.6rem;
+    align-items:center;
+  }
+  .resv-card .icon{width:1.4em; height:1.4em; color:var(--pine);}
+  .resv-item{font-family:"IBM Plex Mono", monospace; font-size:0.8rem; color:var(--granite);}
+  .resv-item b{display:block; color:var(--ink); font-size:0.95rem; font-family:"Source Serif 4", serif; margin-top:0.15rem;}
+  .resv-note{
+    width:100%;
+    font-family:"Source Serif 4", serif;
+    font-size:0.9rem;
+    color:var(--rust);
+    font-style:italic;
+    margin-top:0.3rem;
+  }
+
+  /* ---------- WEATHER ---------- */
+
+  /* ---------- TRAIL TIMELINE ---------- */
+  .trail-wrap{
+    max-width:880px;
+    margin:0 auto;
+    padding:3.2rem 1.5rem 2rem;
+    position:relative;
+  }
+  .trail-line{
+    position:absolute;
+    left:38px;
+    top:0;
+    bottom:0;
+    width:2px;
+    background-image:linear-gradient(var(--granite) 60%, transparent 0%);
+    background-size:2px 14px;
+    background-repeat:repeat-y;
+  }
+  @media (max-width:640px){ .trail-line{left:22px;} }
+
+  .day{
+    position:relative;
+    padding-left:88px;
+    margin-bottom:3.2rem;
+  }
+  @media (max-width:640px){ .day{padding-left:54px;} }
+
+  .day-marker{
+    position:absolute;
+    left:14px;
+    top:2px;
+    width:50px; height:50px;
+    border-radius:50%;
+    background:var(--card);
+    border:2px solid var(--pine);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--pine);
+    box-shadow:0 2px 0 rgba(0,0,0,0.08);
+  }
+  .day-marker .icon{width:1.5rem; height:1.5rem;}
+  @media (max-width:640px){ .day-marker{left:0; width:38px; height:38px;} .day-marker .icon{width:1.1rem; height:1.1rem;} }
+
+  .day-head{display:flex; align-items:baseline; gap:0.8rem; flex-wrap:wrap; margin-bottom:0.3rem;}
+  .day-head .date{font-family:"IBM Plex Mono",monospace; font-size:0.78rem; color:var(--granite); text-transform:uppercase; letter-spacing:0.06em;}
+  .day h2{font-size:1.5rem;}
+
+  .leg{
+    display:flex;
+    align-items:center;
+    gap:0.5rem;
+    margin:0.9rem 0 0;
+    font-family:"IBM Plex Mono", monospace;
+    font-size:0.78rem;
+    color:var(--granite);
+  }
+  .leg .icon{width:1.1em; height:1.1em; color:var(--rust);}
+
+  .stop{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:1.1rem 1.3rem;
+    margin-top:0.9rem;
+    position:relative;
+  }
+  .stop.feature{
+    border-color:var(--rust);
+    background:#FBF1E9;
+  }
+  .stop-time{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:0.75rem;
+    color:var(--rust);
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    display:block;
+    margin-bottom:0.35rem;
+  }
+  .stop h3{
+    font-size:1.05rem;
+    text-transform:none;
+    letter-spacing:0;
+    color:var(--ink);
+    font-family:"Oswald", sans-serif;
+    font-weight:600;
+    margin-bottom:0.3rem;
+    display:flex;
+    align-items:center;
+    gap:0.5rem;
+  }
+  .stop h3 .icon{color:var(--pine); width:1.2em; height:1.2em;}
+  .stop p{margin:0.25rem 0 0; font-size:0.97rem; color:#3A4337;}
+  .tag{
+    display:inline-block;
+    font-family:"IBM Plex Mono", monospace;
+    font-size:0.68rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--pine);
+    background:rgba(47,74,53,0.08);
+    border-radius:3px;
+    padding:0.15rem 0.5rem;
+    margin-top:0.6rem;
+    margin-right:0.3rem;
+  }
+  .planb{
+    margin-top:0.8rem;
+    padding-top:0.7rem;
+    border-top:1px dashed var(--line);
+    font-size:0.9rem;
+    color:var(--granite);
+  }
+  .planb b{color:var(--pine); font-family:"IBM Plex Mono",monospace; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.06em; display:block; margin-bottom:0.2rem;}
+
+  /* ---------- CHECKLIST ---------- */
+  .checklist-section{
+    background:var(--pine-deep);
+    color:var(--bg);
+    padding:4rem 1.5rem 4.5rem;
+    margin-top:1rem;
+  }
+  .checklist-inner{max-width:780px; margin:0 auto;}
+  .checklist-inner h2{
+    color:#FBF8EF;
+    font-size:1.9rem;
+    text-align:center;
+  }
+  .checklist-sub{
+    text-align:center;
+    color:#A9C2AC;
+    font-style:italic;
+    margin:0.6rem 0 2.4rem;
+    font-family:"Source Serif 4", serif;
+  }
+  .checklist-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:1rem;
+  }
+  @media (max-width:640px){ .checklist-grid{grid-template-columns:1fr;} }
+
+  .check-card{
+    background:#26392B;
+    border:1px solid #3C5240;
+    border-radius:8px;
+    padding:1.1rem 1.3rem;
+  }
+  .check-card h3{
+    font-size:0.85rem;
+    color:var(--amber);
+    margin-bottom:0.7rem;
+    letter-spacing:0.06em;
+    display:flex;
+    align-items:center;
+    gap:0.5rem;
+  }
+  .check-card h3 .icon{width:1.1em; height:1.1em;}
+  .check-item{
+    display:flex;
+    align-items:flex-start;
+    gap:0.6rem;
+    padding:0.4rem 0;
+    cursor:pointer;
+    font-size:0.95rem;
+    border-bottom:1px dashed rgba(255,255,255,0.08);
+  }
+  .check-item:last-child{border-bottom:none;}
+  .check-item input{
+    appearance:none;
+    width:18px; height:18px;
+    min-width:18px;
+    margin-top:2px;
+    border:2px solid var(--amber);
+    border-radius:3px;
+    cursor:pointer;
+    position:relative;
+    background:transparent;
+  }
+  .check-item input:checked{background:var(--amber);}
+  .check-item input:checked::after{
+    content:"";
+    position:absolute;
+    left:4px; top:0px;
+    width:5px; height:9px;
+    border:solid var(--pine-deep);
+    border-width:0 2px 2px 0;
+    transform:rotate(45deg);
+  }
+  .check-item label{cursor:pointer; flex:1;}
+  .check-item.done label{
+    text-decoration:line-through;
+    color:#7E9682;
+  }
+  .check-note{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:0.72rem;
+    color:#7E9682;
+    display:block;
+    margin-top:0.1rem;
+  }
+  .progress-wrap{
+    max-width:780px;
+    margin:0 auto 2.4rem;
+    text-align:center;
+  }
+  .progress-bar{
+    height:6px;
+    background:#3C5240;
+    border-radius:4px;
+    overflow:hidden;
+    margin-top:0.6rem;
+  }
+  .progress-fill{
+    height:100%;
+    width:0%;
+    background:var(--amber);
+    transition:width 0.3s ease;
+  }
+  .progress-label{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:0.75rem;
+    color:#A9C2AC;
+  }
+
+  footer{
+    text-align:center;
+    padding:2.2rem 1rem;
+    font-family:"IBM Plex Mono", monospace;
+    font-size:0.72rem;
+    color:var(--granite);
+  }
+</style>
+</head>
+<body>
+
+<!-- Icon sprite -->
+<svg style="display:none" aria-hidden="true">
+  <symbol id="icon-car" viewBox="0 0 24 24"><path d="M4 16V11.5L6 7h12l2 4.5V16"/><path d="M3 16h18v2.5a1 1 0 0 1-1 1h-1.5a1 1 0 0 1-1-1V18H6.5v.5a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><circle cx="7" cy="16.2" r="1.3"/><circle cx="17" cy="16.2" r="1.3"/><path d="M5.5 11.5h13"/></symbol>
+  <symbol id="icon-mountain" viewBox="0 0 24 24"><path d="M2 19 9 6l4 7 2-3 7 9z"/><path d="M9 13.5 11.2 10"/><circle cx="9" cy="6" r="0" /><path d="M9 4.6V6"/><path d="M7.6 5.4 9 6l1.4-.8"/></symbol>
+  <symbol id="icon-tent" viewBox="0 0 24 24"><path d="M2 19h20"/><path d="M12 4 21 19H3z"/><path d="M12 4v15"/><path d="M9.5 19 12 14l2.5 5"/></symbol>
+  <symbol id="icon-mug" viewBox="0 0 24 24"><path d="M5 9h11v9a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z"/><path d="M16 11h2a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-2"/><path d="M5 9c0-2 1-4 3-4M5 9c-.5-1.5-.2-3 .8-4"/><path d="M7 6.5c.6-1 .3-2-.3-2.7"/></symbol>
+  <symbol id="icon-boot" viewBox="0 0 24 24"><path d="M9 3v6.5L5 13c-1 .8-1.5 1.7-1.5 3v2.5a1 1 0 0 0 1 1h15a1 1 0 0 0 1-1c0-2.5-1.7-4-4-4h-3.5V3z"/><path d="M9 6h4"/><path d="M9 9h4"/></symbol>
+  <symbol id="icon-fire" viewBox="0 0 24 24"><path d="M12 21c-3.3 0-6-2.4-6-5.8 0-2 1-3.4 1.8-4.6.4 1 1.1 1.7 1.7 1.4-.4-2.6.5-5 3-7 .4 2 .2 3.3 1.2 4.3 1.3 1.3 2.3 2.8 2.3 5.1C16 18.6 15.3 21 12 21z"/></symbol>
+  <symbol id="icon-pin" viewBox="0 0 24 24"><path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.4"/></symbol>
+  <symbol id="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M3 12h2M19 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></symbol>
+  <symbol id="icon-bug" viewBox="0 0 24 24"><ellipse cx="12" cy="13" rx="4" ry="6"/><path d="M12 7V4M9.5 5.5 8 4M14.5 5.5 16 4M8 10 4.5 8.5M8 16 4.5 17.5M16 10l3.5-1.5M16 16l3.5 1.5M9 13h6"/></symbol>
+  <symbol id="icon-cloud" viewBox="0 0 24 24"><path d="M7 18a4 4 0 0 1-.5-7.97A5 5 0 0 1 16.3 8.2 4.5 4.5 0 0 1 17.5 17z"/></symbol>
+  <symbol id="icon-flag" viewBox="0 0 24 24"><path d="M6 21V4"/><path d="M6 5h13l-3 3.5L19 12H6"/></symbol>
+</svg>
+
+<section class="hero">
+  <svg class="topo" viewBox="0 0 800 500" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" stroke="#F4EFE3" stroke-width="1.2">
+      <path d="M-20,420 Q200,340 400,420 T820,400"/>
+      <path d="M-20,380 Q220,300 420,375 T820,350"/>
+      <path d="M-20,340 Q240,260 440,330 T820,300"/>
+      <path d="M-20,300 Q260,220 460,285 T820,250"/>
+      <path d="M-20,260 Q280,180 480,240 T820,200"/>
+      <path d="M-20,460 Q190,400 400,455 T820,440"/>
+      <path d="M-20,60 Q260,120 460,55 T820,90"/>
+      <path d="M-20,100 Q240,160 440,95 T820,130"/>
+      <path d="M-20,140 Q220,195 420,140 T820,170"/>
+    </g>
+  </svg>
+  <div class="hero-inner">
+    <div class="eyebrow">Stanislaus National Forest · Alpine County, CA</div>
+    <h1>Lake Alpine<br>Silver Tip Campground</h1>
+    <div class="sub">Two nights, one watering hole, one summit.</div>
+    <div class="hero-meta">
+      <div><b>Check In</b>Fri, Jul 24 2026</div>
+      <div><b>Check Out</b>Sun, Jul 26 2026</div>
+      <div><b>From</b>Santa Clara, CA</div>
+      <div><b>Elevation</b>~7,400 ft</div>
+    </div>
+  </div>
+</section>
+
+<div class="resv">
+  <div class="resv-card">
+    <svg class="icon" viewBox="0 0 24 24"><use href="#icon-flag"/></svg>
+    <div class="resv-item">Confirmation<b>#0814324411-1</b></div>
+    <div class="resv-item">Night 1 — Jul 24<b>Site #1</b></div>
+    <div class="resv-item">Night 2 — Jul 25<b>Site #8</b></div>
+    <div class="resv-note">Reservation splits across two sites — pack up and move camp from Site 1 to Site 8 on Saturday morning before heading out to the trail.</div>
+  </div>
+</div>
+
+<div class="trail-wrap">
+  <div class="trail-line"></div>
+
+  <div class="day">
+    <div class="day-marker"><svg class="icon" viewBox="0 0 24 24"><use href="#icon-car"/></svg></div>
+    <div class="day-head">
+      <h2>Day 1 — Roll Out</h2>
+      <span class="date mono">Friday, Jul 24</span>
+    </div>
+
+    <div class="stop">
+      <span class="stop-time">12:00 – 1:00 PM</span>
+      <h3><svg class="icon" viewBox="0 0 24 24"><use href="#icon-car"/></svg> Depart Santa Clara</h3>
+      <p>Load up and hit the road, heading east on Hwy 4 toward the Sierra foothills.</p>
+    </div>
+
+    <div class="leg"><svg class="icon" viewBox="0 0 24 24"><use href="#icon-car"/></svg> Santa Clara → Murphys · ~120 mi · ~2h 15m</div>
+
+    <div class="stop feature">
+      <span class="stop-time">~3:00 PM</span>
+      <h3><svg class="icon" viewBox="0 0 24 24"><use href="#icon-mug"/></svg> The Watering Hole — Murphys, CA</h3>
+      <p>223 Big Trees Road, Murphys. 40 taps and a creekside patio — exactly the kind of halfway stop this drive deserves. Pitcher of Coors Banquet, smash burger, and a few minutes off your feet before the last stretch up the mountain.</p>
+      <span class="tag">Pitcher of Coors Banquet</span>
+      <span class="tag">Smash Burger</span>
+    </div>
+
+    <div class="leg"><svg class="icon" viewBox="0 0 24 24"><use href="#icon-car"/></svg> Murphys → Silver Tip Campground · ~40 mi · ~1h 15m</div>
+
+    <div class="stop">
+      <span class="stop-time">Late Afternoon</span>
+      <h3><svg class="icon" viewBox="0 0 24 24"><use href="#icon-tent"/></svg> Arrive Silver Tip Campground — Site #1</h3>
+      <p>Continue east on Hwy 4 toward Lake Alpine. Silver Tip sits just under a mile west of the lake. Set up camp at Site #1, get the fire ring going, and settle in for night one at 7,400 ft.</p>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="day-marker"><svg class="icon" viewBox="0 0 24 24"><use href="#icon-mountain"/></svg></div>
+    <div class="day-head">
+      <h2>Day 2 — Inspiration Point</h2>
+      <span class="date mono">Saturday, Jul 25</span>
+    </div>
+
+    <div class="stop">
+      <span class="stop-time">Morning</span>
+      <h3><svg class="icon" viewBox="0 0 24 24"><use href="#icon-fire"/></svg> Coffee, Breakfast &amp; Move Camp</h3>
+      <p>Slow start at camp, then break down Site #1 and re-set at Site #8 for the second night. Fuel up before the hike — it's a steep one, even though it's short.</p>
+    </div>
+
+    <div class="stop feature">
+      <span class="stop-time">Mid-Morning</span>
+      <h3><svg class="icon" viewBox="0 0 24 24"><use href="#icon-boot"/></svg> Hike to Inspiration Point</h3>
+      <p>An out-and-back trail along the Lakeshore Trail to the Inspiration Point spur — about 2.5 miles round trip with ~600 ft of elevation gain, roughly 1.5–2 hours including time at the top. Rocky and steep near the summit, but the payoff is a panoramic view over Lake Alpine, Mount Reba, and the Dardanelles beyond.</p>
+      <span class="tag">~2.5 mi round trip</span>
+      <span class="tag">~600 ft gain</span>
+      <span class="tag">Moderate</span>
+      <div class="planb"><b>Plan B</b>If the trail's crowded, wet, or anyone's not up for the climb: the Lakeshore Trail loops the full lake in about 4 easy, mostly flat miles — same views of the water, none of the scramble.</div>
+    </div>
+
+    <div class="stop">
+      <span class="stop-time">Afternoon</span>
+      <h3><svg class="icon" viewBox="0 0 24 24"><use href="#icon-sun"/></svg> Lake Time</h3>
+      <p>Cool off back at Lake Alpine — swim, fish, or just sit on the shore and recover from the climb.</p>
+    </div>
+
+    <div class="stop">
+      <span class="stop-time">Evening</span>
+      <h3><svg class="icon" viewBox="0 0 24 24"><use href="#icon-fire"/></svg> Camp Dinner &amp; Fire — Site #8</h3>
+      <p>Linguiça on the fire, sandwiches if anyone's still hungry, and s'mores once it's dark. Second and final night under the pines.</p>
+    </div>
+  </div>
+
+  <div class="day">
+    <div class="day-marker"><svg class="icon" viewBox="0 0 24 24"><use href="#icon-car"/></svg></div>
+    <div class="day-head">
+      <h2>Day 3 — Break Camp</h2>
+      <span class="date mono">Sunday, Jul 26</span>
+    </div>
+
+    <div class="stop">
+      <span class="stop-time">Morning</span>
+      <h3><svg class="icon" viewBox="0 0 24 24"><use href="#icon-tent"/></svg> Pack Up</h3>
+      <p>Strike camp, double-check the fire ring is fully out, and pack the car. Check-out is the morning of the 26th.</p>
+    </div>
+
+    <div class="leg"><svg class="icon" viewBox="0 0 24 24"><use href="#icon-car"/></svg> Silver Tip → Santa Clara · ~160 mi · ~3h, with the Murphys stop</div>
+
+    <div class="stop">
+      <span class="stop-time">12:00 – 1:00 PM</span>
+      <h3><svg class="icon" viewBox="0 0 24 24"><use href="#icon-car"/></svg> Depart for Santa Clara</h3>
+      <p>Head back down Hwy 4. If anyone's still got room for a last stop, Murphys or Angels Camp are right on the way home.</p>
+    </div>
+  </div>
+</div>
+
+<section class="checklist-section">
+  <div class="checklist-inner">
+    <h2>Pack List</h2>
+    <p class="checklist-sub">Tap to check off as you pack.</p>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-label"><span id="progress-text">0 / 0 packed</span></div>
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+  </div>
+
+  <div class="checklist-inner checklist-grid" id="checklist">
+
+    <div class="check-card">
+      <h3><svg class="icon" viewBox="0 0 24 24"><use href="#icon-tent"/></svg> Shelter &amp; Comfort</h3>
+      <div class="check-item"><input type="checkbox" id="c1"><label for="c1">Tent (stakes, footprint, rainfly)</label></div>
+      <div class="check-item"><input type="checkbox" id="c2"><label for="c2">Sleeping bags &amp; pads</label></div>
+      <div class="check-item"><input type="checkbox" id="c3"><label for="c3">Camp chairs</label></div>
+      <div class="check-item"><input type="checkbox" id="c4"><label for="c4">Headlamp / lantern</label></div>
+      <div class="check-item"><input type="checkbox" id="c18"><label for="c18">Clothes</label></div>
+      <div class="check-item"><input type="checkbox" id="c19"><label for="c19">Towel</label></div>
+    </div>
+
+    <div class="check-card">
+      <h3><svg class="icon" viewBox="0 0 24 24"><use href="#icon-sun"/></svg> Sun &amp; Bugs</h3>
+      <div class="check-item"><input type="checkbox" id="c5"><label for="c5">Sunscreen</label></div>
+      <div class="check-item"><input type="checkbox" id="c6"><label for="c6">Bug spray</label></div>
+      <div class="check-item"><input type="checkbox" id="c7"><label for="c7">Hat / sunglasses</label></div>
+      <div class="check-item"><input type="checkbox" id="c8"><label for="c8">Hiking boots <span class="check-note">for Inspiration Point</span></label></div>
+    </div>
+
+    <div class="check-card">
+      <h3><svg class="icon" viewBox="0 0 24 24"><use href="#icon-fire"/></svg> Food &amp; Fire</h3>
+      <div class="check-item"><input type="checkbox" id="c9"><label for="c9">PB&amp;J fixings</label></div>
+      <div class="check-item"><input type="checkbox" id="c10"><label for="c10">Outdoor Boys bread</label></div>
+      <div class="check-item"><input type="checkbox" id="c11"><label for="c11">Linguiça</label></div>
+      <div class="check-item"><input type="checkbox" id="c12"><label for="c12">S'mores stash</label></div>
+      <div class="check-item"><input type="checkbox" id="c13"><label for="c13">Firewood / lighter</label></div>
+      <div class="check-item"><input type="checkbox" id="c20"><label for="c20">More COORS</label></div>
+    </div>
+
+    <div class="check-card">
+      <h3><svg class="icon" viewBox="0 0 24 24"><use href="#icon-boot"/></svg> On the Trail</h3>
+      <div class="check-item"><input type="checkbox" id="c14"><label for="c14">Water bottles</label></div>
+      <div class="check-item"><input type="checkbox" id="c15"><label for="c15">Day pack</label></div>
+      <div class="check-item"><input type="checkbox" id="c16"><label for="c16">First aid kit</label></div>
+      <div class="check-item"><input type="checkbox" id="c17"><label for="c17">Cash for the Watering Hole</label></div>
+    </div>
+
+  </div>
+</section>
+
+<footer>Lake Alpine · Silver Tip Campground · Jul 24–26, 2026 · Confirmation #0814324411-1</footer>
+
+<script>
+  // ---- Checklist ----
+  const boxes = document.querySelectorAll('.check-item input[type="checkbox"]');
+  const total = boxes.length;
+  const fill = document.getElementById('progress-fill');
+  const text = document.getElementById('progress-text');
+  const STORAGE_KEY = 'lakeAlpinePackList2026';
+
+  function updateProgress(){
+    const checked = document.querySelectorAll('.check-item input:checked').length;
+    fill.style.width = (checked/total*100) + '%';
+    text.textContent = checked + ' / ' + total + ' packed';
+  }
+  function save(){
+    const state = {};
+    boxes.forEach(b => state[b.id] = b.checked);
+    try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }catch(e){}
+  }
+  function load(){
+    try{
+      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+      boxes.forEach(b => { if(saved[b.id]) b.checked = true; });
+    }catch(e){}
+  }
+  boxes.forEach(b => {
+    b.addEventListener('change', () => {
+      b.closest('.check-item').classList.toggle('done', b.checked);
+      updateProgress();
+      save();
+    });
+  });
+  load();
+  boxes.forEach(b => b.closest('.check-item').classList.toggle('done', b.checked));
+  updateProgress();
+</script>
+
+</body>
+</html>
